@@ -20,7 +20,7 @@ var NameList = function (_React$Component) {
     _createClass(NameList, [{
         key: 'render',
         value: function render() {
-            var people = [{ name: 'ullas' }, { name: 'kunder' }, { name: 'Villas' }];
+            var people = [{ name: 'Ullas' }, { name: 'Captain' }, { name: 'America' }];
             return React.createElement(
                 'ul',
                 null,
@@ -28,7 +28,7 @@ var NameList = function (_React$Component) {
                     return React.createElement(
                         'li',
                         { key: person.name },
-                        person.name
+                        person.name.toUpperCase()
                     );
                 })
             );

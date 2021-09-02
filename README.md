@@ -28,3 +28,40 @@ const template = <h1>Heading</h1>
 
 ReactDOM.render(template, document.getElementById('app'))
 ```
+
+## Component
+
+- Components let you split the UI into independent, reusable pieces, and think about each piece in isolation.
+
+- Conceptually, components are like JavaScript functions.
+
+ES6 class to define a component:
+
+```jsx
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello</h1>;
+  }
+}
+```
+
+```jsx
+class NameList extends React.Component {
+    render() {
+        const people = [
+            { name: 'ullas' },
+            { name: 'kunder' },
+            { name: 'Villas' }
+        ]
+        return (
+            <ul>
+                { people.map(person => (
+                    <li key={ person.name }>{ person.name }</li>
+                )) }
+            </ul>
+        )
+    }
+}
+
+ReactDOM.render(<NameList />, document.getElementById('app'));
+```

@@ -1,14 +1,14 @@
 class NameList extends React.Component {
     render() {
         const people = [
-            { name: 'ullas' },
-            { name: 'kunder' },
-            { name: 'Villas' }
+            { name: 'Ullas' },
+            { name: 'Captain' },
+            { name: 'America' }
         ]
         return (
             <ul>
                 { people.map(person => (
-                    <li key={ person.name }>{ person.name }</li>
+                    <li key={ person.name }>{ person.name.toUpperCase() }</li>
                 )) }
             </ul>
         )
