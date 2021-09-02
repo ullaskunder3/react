@@ -1,3 +1,13 @@
-const template = <h1>Awesome</h1>
-
-ReactDOM.render(template, document.getElementById('app'))
+const people = [
+    { name: 'ullas' },
+    { name: 'kunder' },
+    { name: 'Villas' }
+]
+const template = (
+    <ul>
+        { people.map(person => (
+            <li key={ person.name }>{ person.name }</li>
+        )) }
+    </ul>
+)
+ReactDOM.render(template, document.getElementById('app'));
