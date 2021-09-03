@@ -177,3 +177,32 @@ class Button extends React.Component {
 
 ReactDOM.render(<App />, document.getElementById('app'));
 ```
+
+## Component Props
+
+`Props` is a special keyword in React, which is used for passing data from one component to another.
+
+```jsx
+class App extends React.Component {
+    render() {
+        return (
+            <div>
+                <Header title = "Header Title"/>
+            </div>
+        )
+    }
+}
+
+class Header extends React.Component {
+    render() {
+        // this is a reference to the current instance of this component
+        return (
+            <div>
+                <h1>{this.props.title}</h1>
+            </div>
+        )
+    }
+}
+```
+
+Important part here is the data with props are being passed in a `uni-directional flow` down the stream. (one way from parent to child)
