@@ -1,11 +1,17 @@
 class App extends React.Component {
     render() {
+        // Lets use reference
+        const title = "Header Title";
+        const subTitle = "Sub Title";
+        const people = [
+            { name: 'Ullas' },
+            { name: 'Captain' },
+            { name: 'America' }
+        ]
         return (
             <div>
-                <Header title = 'Header Title' subtitle = "subtitle"/>
-                <NameList />
-                {/* react components are reusabe */ }
-                <NameList />
+                <Header title = {title} subTitle = {subTitle} />
+                <NameList nameList = {people}/>
                 <Button />
             </div>
         )
@@ -17,7 +23,7 @@ class Header extends React.Component {
         return (
             <div>
                 <h1>{this.props.title.toUpperCase()}</h1>
-                <h2>{this.props.subtitle}</h2>
+                <h3>{this.props.subTitle}</h3>
             </div>
         )
     }
@@ -25,19 +31,13 @@ class Header extends React.Component {
 // Name list component
 class NameList extends React.Component {
     render() {
-        const people = [
-            { name: 'Ullas' },
-            { name: 'Captain' },
-            { name: 'America' }
-        ]
+        console.log(this.props.nameList);
         return (
             <ul>
                 <p>List Component</p>
-
-                { people.map(person => (
-                    <li key={ person.name }>{ person.name}</li>
+                { this.props.nameList.map(person => (
+                    <li key={ person.name }>{ person.name }</li>
                 )) }
-
             </ul>
         )
     }

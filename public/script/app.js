@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -18,14 +18,17 @@ var App = function (_React$Component) {
     }
 
     _createClass(App, [{
-        key: 'render',
+        key: "render",
         value: function render() {
+            // Lets use reference
+            var title = "Header Title";
+            var subTitle = "Sub Title";
+            var people = [{ name: 'Ullas' }, { name: 'Captain' }, { name: 'America' }];
             return React.createElement(
-                'div',
+                "div",
                 null,
-                React.createElement(Header, { title: 'Header Title', subtitle: 'subtitle' }),
-                React.createElement(NameList, null),
-                React.createElement(NameList, null),
+                React.createElement(Header, { title: title, subTitle: subTitle }),
+                React.createElement(NameList, { nameList: people }),
                 React.createElement(Button, null)
             );
         }
@@ -44,20 +47,20 @@ var Header = function (_React$Component2) {
     }
 
     _createClass(Header, [{
-        key: 'render',
+        key: "render",
         value: function render() {
             return React.createElement(
-                'div',
+                "div",
                 null,
                 React.createElement(
-                    'h1',
+                    "h1",
                     null,
                     this.props.title.toUpperCase()
                 ),
                 React.createElement(
-                    'h2',
+                    "h3",
                     null,
-                    this.props.subtitle
+                    this.props.subTitle
                 )
             );
         }
@@ -78,20 +81,20 @@ var NameList = function (_React$Component3) {
     }
 
     _createClass(NameList, [{
-        key: 'render',
+        key: "render",
         value: function render() {
-            var people = [{ name: 'Ullas' }, { name: 'Captain' }, { name: 'America' }];
+            console.log(this.props.nameList);
             return React.createElement(
-                'ul',
+                "ul",
                 null,
                 React.createElement(
-                    'p',
+                    "p",
                     null,
-                    'List Component'
+                    "List Component"
                 ),
-                people.map(function (person) {
+                this.props.nameList.map(function (person) {
                     return React.createElement(
-                        'li',
+                        "li",
                         { key: person.name },
                         person.name
                     );
@@ -115,12 +118,12 @@ var Button = function (_React$Component4) {
     }
 
     _createClass(Button, [{
-        key: 'render',
+        key: "render",
         value: function render() {
             return React.createElement(
-                'button',
+                "button",
                 null,
-                'Add'
+                "Add"
             );
         }
     }]);
