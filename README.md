@@ -182,6 +182,8 @@ ReactDOM.render(<App />, document.getElementById('app'));
 
 `Props` is a special keyword in React, which is used for passing data from one component to another.
 
+Example. 3
+
 ```jsx
 class App extends React.Component {
     render() {
@@ -206,3 +208,71 @@ class Header extends React.Component {
 ```
 
 Important part here is the data with props are being passed in a `uni-directional flow` down the stream. (one way from parent to child)
+
+Example. 3.1
+
+```jsx
+class App extends React.Component {
+    render() {
+        // Lets use reference
+        const title = "Header Title";
+        const subTitle = "Sub Title";
+        const people = [
+            { name: 'Ullas' },
+            { name: 'Captain' },
+            { name: 'America' }
+        ]
+        return (
+            <div>
+                <Header title = {title} subTitle = {subTitle} />
+                <NameList nameList = {people}/>
+                <Button />
+            </div>
+        )
+    }
+}
+```
+
+Passing data to Child component using this.props.nameOFTheKey
+
+- When creating a list in the UI from an array with JSX, you should add a key prop to each child and to any of its’ children.
+
+- Ex: `<li key="uniqueId1" >Item1</li>`
+
+- React uses the key prop create a relationship between the component and the DOM element. The library uses this relationship to determine whether or not the component should be re-rendered.
+
+```jsx
+class Header extends React.Component {
+    render() {
+        return (
+            <div>
+                <h1>{this.props.title.toUpperCase()}</h1>
+                <h3>{this.props.subTitle}</h3>
+            </div>
+        )
+    }
+}
+// Name list component
+class NameList extends React.Component {
+    render() {
+        console.log(this.props.nameList);
+        return (
+            <ul>
+                <p>List Component</p>
+
+                {
+                    /**
+                     * Warning: Each child in a list should have a unique "key" prop.
+                     */
+                }
+
+                { this.props.nameList.map(person => (
+                    <li key={ person.name }>{ person.name }</li>
+                )) 
+                }
+
+            </ul>
+        )
+    }
+}
+```
