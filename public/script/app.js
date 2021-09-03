@@ -24,6 +24,11 @@ var NameList = function (_React$Component) {
             return React.createElement(
                 'ul',
                 null,
+                React.createElement(
+                    'p',
+                    null,
+                    'List Component'
+                ),
                 people.map(function (person) {
                     return React.createElement(
                         'li',
@@ -37,5 +42,66 @@ var NameList = function (_React$Component) {
 
     return NameList;
 }(React.Component);
+// creating button component
 
-ReactDOM.render(React.createElement(NameList, null), document.getElementById('app'));
+
+var Button = function (_React$Component2) {
+    _inherits(Button, _React$Component2);
+
+    function Button() {
+        _classCallCheck(this, Button);
+
+        return _possibleConstructorReturn(this, (Button.__proto__ || Object.getPrototypeOf(Button)).apply(this, arguments));
+    }
+
+    _createClass(Button, [{
+        key: 'render',
+        value: function render() {
+            return React.createElement(
+                'button',
+                null,
+                'Add'
+            );
+        }
+    }]);
+
+    return Button;
+}(React.Component);
+
+var Header = function (_React$Component3) {
+    _inherits(Header, _React$Component3);
+
+    function Header() {
+        _classCallCheck(this, Header);
+
+        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+    }
+
+    _createClass(Header, [{
+        key: 'render',
+        value: function render() {
+            return React.createElement(
+                'div',
+                null,
+                React.createElement(
+                    'h1',
+                    null,
+                    'Header Component'
+                )
+            );
+        }
+    }]);
+
+    return Header;
+}(React.Component);
+
+var jsx = React.createElement(
+    'div',
+    null,
+    React.createElement(Header, null),
+    React.createElement(NameList, null),
+    React.createElement(NameList, null),
+    React.createElement(Button, null)
+);
+
+ReactDOM.render(jsx, document.getElementById('app'));
