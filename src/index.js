@@ -2,12 +2,10 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Header />
-
+                <Header title = 'Header Title' subtitle = "subtitle"/>
                 <NameList />
                 {/* react components are reusabe */ }
                 <NameList />
-
                 <Button />
             </div>
         )
@@ -18,12 +16,13 @@ class Header extends React.Component {
     render() {
         return (
             <div>
-                <h1>Header Component</h1>
+                <h1>{this.props.title.toUpperCase()}</h1>
+                <h2>{this.props.subtitle}</h2>
             </div>
         )
     }
 }
-
+// Name list component
 class NameList extends React.Component {
     render() {
         const people = [
@@ -36,7 +35,7 @@ class NameList extends React.Component {
                 <p>List Component</p>
 
                 { people.map(person => (
-                    <li key={ person.name }>{ person.name.toUpperCase() }</li>
+                    <li key={ person.name }>{ person.name}</li>
                 )) }
 
             </ul>

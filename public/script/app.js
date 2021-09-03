@@ -23,7 +23,7 @@ var App = function (_React$Component) {
             return React.createElement(
                 'div',
                 null,
-                React.createElement(Header, null),
+                React.createElement(Header, { title: 'Header Title', subtitle: 'subtitle' }),
                 React.createElement(NameList, null),
                 React.createElement(NameList, null),
                 React.createElement(Button, null)
@@ -52,7 +52,12 @@ var Header = function (_React$Component2) {
                 React.createElement(
                     'h1',
                     null,
-                    'Header Component'
+                    this.props.title.toUpperCase()
+                ),
+                React.createElement(
+                    'h2',
+                    null,
+                    this.props.subtitle
                 )
             );
         }
@@ -60,6 +65,8 @@ var Header = function (_React$Component2) {
 
     return Header;
 }(React.Component);
+// Name list component
+
 
 var NameList = function (_React$Component3) {
     _inherits(NameList, _React$Component3);
@@ -86,7 +93,7 @@ var NameList = function (_React$Component3) {
                     return React.createElement(
                         'li',
                         { key: person.name },
-                        person.name.toUpperCase()
+                        person.name
                     );
                 })
             );
