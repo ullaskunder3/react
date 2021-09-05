@@ -1,6 +1,6 @@
 # React
 
-React uses JavaScript Object to buid Ui interface
+React uses JavaScript Object to buid UI interface
 
 - Using **create-react-app** command
 - create-react-app quickly setup projects without configuring, so you do not have to setup your project by yourself.
