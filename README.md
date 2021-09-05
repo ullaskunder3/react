@@ -2,31 +2,83 @@
 
 React uses JavaScript Object to buid Ui interface
 
-- React element are light weight js object
+- Using **create-react-app** command
+- create-react-app quickly setup projects without configuring, so you do not have to setup your project by yourself.
+  - Using npm or npx: `npx create-react-app project-name`
+  - This will install mainly `react`, `react-dom` and `react-script`
+    - `react-script` setup __babel__ (for js syntax), __webpack__, __dev-server__ (auto reload functionality)
+
+OR
+
+- Creating react app from scratch
 
 ## Complete react from scratch
 
 - Create folder structure
 
 ```cmd
-
+react-proj
+|
 ├───public
-│   └───script
+│   |└───script
+|   |    └─── app.js
+|   └─── index.html
+|
 └───src
+    └─── index.js
+
 ```
 
-- Add index.js in src folder where we write all the react code
+We will need `live-server`
 
-- Add index.html and in public folder and app.js in script folder
+This is a little development server with live reload capability
+You should probably install this globally by using `-g` flag.
+
+```bash
+npm install -g live-server
+```
+
+- Create `index.js` in `src` folder where we write all the react code
+
+- Create `index.html` & `script` folder inside public folder, Add app.js in script folder
 
 - Last do => `npm install` with package.json it will install all the required dependencies
 
-- In the `src` /index.js add this basic code 
+- In the `src` /index.js add this basic code
 
 ```jsx
 const template = <h1>Heading</h1>
 
 ReactDOM.render(template, document.getElementById('app'))
+```
+
+## Compiling the file
+
+- We are telling babel that we have written react code in src\index.js and out file to public\srcipt\app.js
+
+- We will use presets env, react :
+Babel preset-env is a preset that compiles down to a minimum of ES5 ( preset-es2015 )
+
+- To compile a file every time that you change it, use the `--watch` or `-w`
+
+  - In the `ps OR cmd` start `babel` by
+
+    ```ps
+    ❯ babel .\src\index.js --out-file=public\script\app.js --presets=env,react --watch
+    ```
+
+  - In the `bash` start `babel` by
+
+    ```bash
+    babel src/index.js --out-file=public/script/app.js --presets=env,react --watch
+    ```
+
+## live-sever
+
+open another terminal `execute the command to to run the file`
+
+```bash
+live-server public/
 ```
 
 ## Component
@@ -276,3 +328,8 @@ class NameList extends React.Component {
     }
 }
 ```
+
+In short, a key should be:
+
+- `Unique` - A key cannot be identical to that of a sibling component.
+- `Static` - A key should not ever change between renders.
