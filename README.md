@@ -405,5 +405,5 @@ ReactDOM.render(<App />, document.getElementById('app'));
 ```
 
 - [ ] Compiling the file using `babel` and livereload using `live-server`
-  - Using babel [👆 To the Top](##compiling-the-file)
-  - Using live-server [👆 To the Top](##live-server)
+  - Using babel [👆 To the Top](#compiling-the-file)
+  - Using live-server [👆 To the Top](#live-server)
