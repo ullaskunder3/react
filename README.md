@@ -1,12 +1,14 @@
 # React
 
+Lets learn building large react app by building smaller react components and then composing them together
+
 React uses JavaScript Object to buid UI interface
 
 - Using **create-react-app** command
 - create-react-app quickly setup projects without configuring, so you do not have to setup your project by yourself.
   - Using npm or npx: `npx create-react-app project-name`
   - This will install mainly `react`, `react-dom` and `react-script`
-    - `react-script` setup __babel__ (for js syntax), __webpack__, __dev-server__ (auto reload functionality)
+    - `react-script` setup **babel** (for js syntax), **webpack**, **dev-server** (auto reload functionality)
 
 OR
 
@@ -47,9 +49,9 @@ npm install -g live-server
 - In the `src` /index.js add this basic code
 
 ```jsx
-const template = <h1>Heading</h1>
+const template = <h1>Heading</h1>;
 
-ReactDOM.render(template, document.getElementById('app'))
+ReactDOM.render(template, document.getElementById("app"));
 ```
 
 ## Compiling the file
@@ -57,7 +59,7 @@ ReactDOM.render(template, document.getElementById('app'))
 - We are telling babel that we have written react code in src\index.js and out file to public\srcipt\app.js
 
 - We will use presets env, react :
-Babel preset-env is a preset that compiles down to a minimum of ES5 ( preset-es2015 )
+  Babel preset-env is a preset that compiles down to a minimum of ES5 ( preset-es2015 )
 
 - To compile a file every time that you change it, use the `--watch` or `-w`
 
@@ -73,7 +75,7 @@ Babel preset-env is a preset that compiles down to a minimum of ES5 ( preset-es2
     babel src/index.js --out-file=public/script/app.js --presets=env,react --watch
     ```
 
-## live-sever
+## Live server
 
 open another terminal `execute the command to to run the file`
 
@@ -101,69 +103,60 @@ Example. 1
 
 ```jsx
 class NameList extends React.Component {
-    render() {
-        const people = [
-            { name: 'ullas' },
-            { name: 'kunder' },
-            { name: 'Villas' }
-        ]
-        return (
-            <ul>
-                { people.map(person => (
-                    <li key={ person.name }>{ person.name }</li>
-                )) }
-            </ul>
-        )
-    }
+  render() {
+    const people = [{ name: "ullas" }, { name: "kunder" }, { name: "Villas" }];
+    return (
+      <ul>
+        {people.map((person) => (
+          <li key={person.name}>{person.name}</li>
+        ))}
+      </ul>
+    );
+  }
 }
 
-ReactDOM.render(<NameList />, document.getElementById('app'));
+ReactDOM.render(<NameList />, document.getElementById("app"));
 ```
 
 Example. 1.1
 
 ```jsx
 class Header extends React.Component {
-    render() {
-        return (
-            <div>
-                <h1>Header Component</h1>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <h1>Header Component</h1>
+      </div>
+    );
+  }
 }
 
 class NameList extends React.Component {
-    render() {
-        const people = [
-            { name: 'Ullas' },
-            { name: 'Captain' },
-            { name: 'America' }
-        ]
-        return (
-            <ul>
-                <p>List Component</p>
+  render() {
+    const people = [
+      { name: "Ullas" },
+      { name: "Captain" },
+      { name: "America" },
+    ];
+    return (
+      <ul>
+        <p>List Component</p>
 
-                { people.map(person => (
-                    <li key={ person.name }>{ person.name.toUpperCase() }</li>
-                )) }
-
-            </ul>
-        )
-    }
+        {people.map((person) => (
+          <li key={person.name}>{person.name.toUpperCase()}</li>
+        ))}
+      </ul>
+    );
+  }
 }
 // creating button component
 class Button extends React.Component {
-    render() {
-        return (
-            <button>
-                Add
-            </button>
-        )
-    }
+  render() {
+    return <button>Add</button>;
+  }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById("app"));
 ```
 
 ## Nesting Components
@@ -172,62 +165,57 @@ Example. 2
 
 ```js
 class App extends React.Component {
-    render() {
-        return (
-            <div>
-                <Header />
+  render() {
+    return (
+      <div>
+        <Header />
 
-                <NameList />
-                {/* react components are reusabe */ }
-                <NameList />
+        <NameList />
+        {/* react components are reusabe */}
+        <NameList />
 
-                <Button />
-            </div>
-        )
-    }
+        <Button />
+      </div>
+    );
+  }
 }
 
 class Header extends React.Component {
-    render() {
-        return (
-            <div>
-                <h1>Header Component</h1>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <h1>Header Component</h1>
+      </div>
+    );
+  }
 }
 
 class NameList extends React.Component {
-    render() {
-        const people = [
-            { name: 'Ullas' },
-            { name: 'Captain' },
-            { name: 'America' }
-        ]
-        return (
-            <ul>
-                <p>List Component</p>
+  render() {
+    const people = [
+      { name: "Ullas" },
+      { name: "Captain" },
+      { name: "America" },
+    ];
+    return (
+      <ul>
+        <p>List Component</p>
 
-                { people.map(person => (
-                    <li key={ person.name }>{ person.name.toUpperCase() }</li>
-                )) }
-
-            </ul>
-        )
-    }
+        {people.map((person) => (
+          <li key={person.name}>{person.name.toUpperCase()}</li>
+        ))}
+      </ul>
+    );
+  }
 }
 // creating button component
 class Button extends React.Component {
-    render() {
-        return (
-            <button>
-                Add
-            </button>
-        )
-    }
+  render() {
+    return <button>Add</button>;
+  }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById("app"));
 ```
 
 ## Component Props
@@ -238,24 +226,24 @@ Example. 3
 
 ```jsx
 class App extends React.Component {
-    render() {
-        return (
-            <div>
-                <Header title = "Header Title"/>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <Header title="Header Title" />
+      </div>
+    );
+  }
 }
 
 class Header extends React.Component {
-    render() {
-        // this is a reference to the current instance of this component
-        return (
-            <div>
-                <h1>{this.props.title}</h1>
-            </div>
-        )
-    }
+  render() {
+    // this is a reference to the current instance of this component
+    return (
+      <div>
+        <h1>{this.props.title}</h1>
+      </div>
+    );
+  }
 }
 ```
 
@@ -265,23 +253,23 @@ Example. 3.1
 
 ```jsx
 class App extends React.Component {
-    render() {
-        // Lets use reference
-        const title = "Header Title";
-        const subTitle = "Sub Title";
-        const people = [
-            { name: 'Ullas' },
-            { name: 'Captain' },
-            { name: 'America' }
-        ]
-        return (
-            <div>
-                <Header title = {title} subTitle = {subTitle} />
-                <NameList nameList = {people}/>
-                <Button />
-            </div>
-        )
-    }
+  render() {
+    // Lets use reference
+    const title = "Header Title";
+    const subTitle = "Sub Title";
+    const people = [
+      { name: "Ullas" },
+      { name: "Captain" },
+      { name: "America" },
+    ];
+    return (
+      <div>
+        <Header title={title} subTitle={subTitle} />
+        <NameList nameList={people} />
+        <Button />
+      </div>
+    );
+  }
 }
 ```
 
@@ -295,37 +283,33 @@ Passing data to Child component using this.props.nameOFTheKey
 
 ```jsx
 class Header extends React.Component {
-    render() {
-        return (
-            <div>
-                <h1>{this.props.title.toUpperCase()}</h1>
-                <h3>{this.props.subTitle}</h3>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <h1>{this.props.title.toUpperCase()}</h1>
+        <h3>{this.props.subTitle}</h3>
+      </div>
+    );
+  }
 }
 // Name list component
 class NameList extends React.Component {
-    render() {
-        console.log(this.props.nameList);
-        return (
-            <ul>
-                <p>List Component</p>
+  render() {
+    console.log(this.props.nameList);
+    return (
+      <ul>
+        <p>List Component</p>
 
-                {
-                    /**
-                     * Warning: Each child in a list should have a unique "key" prop.
-                     */
-                }
+        {/**
+         * Warning: Each child in a list should have a unique "key" prop.
+         */}
 
-                { this.props.nameList.map(person => (
-                    <li key={ person.name }>{ person.name }</li>
-                )) 
-                }
-
-            </ul>
-        )
-    }
+        {this.props.nameList.map((person) => (
+          <li key={person.name}>{person.name}</li>
+        ))}
+      </ul>
+    );
+  }
 }
 ```
 
@@ -333,3 +317,94 @@ In short, a key should be:
 
 - `Unique` - A key cannot be identical to that of a sibling component.
 - `Static` - A key should not ever change between renders.
+
+## Lets Clean the index.js and lets create soemthing usefull
+
+!Important concepts
+
+- Props: Which allow passing data into the components
+
+- Functional Components: An Alternative way to create components
+
+- Controlled components: Allow use to hook up the forms in your application to the component state
+
+## Task 1
+
+![component Project](project/task1.png)
+
+- [ ] Creating App component inside index.js
+
+- [ ] Create render() method
+
+- [ ] Inside render() Creat array of object with object Properties
+
+```js
+ id: "userID",
+ name: "User Name",
+ email: "useremailid@gmail.com",
+```
+
+```jsx
+class App extends React.Component {
+    render() {
+        const developerlist = [
+            {
+                id: 'DevJr1',
+                name: 'Ullas Kunder',
+                email: "ullaskunder3@gmail.com",
+                "avatarUrl": "https://randomuser.me/api/portraits/med/men/1.jpg"
+            }
+        ]
+        return (
+            <div>
+                <DeveloperList developerlist={ developerlist } />
+            </div>
+        )
+    }
+}
+```
+
+- [ ] Create Class DeveloperList
+
+- [ ] Creating Props are arguments passed into React components
+
+```jsx
+class DeveloperList extends React.Component {
+  render() {
+    return (
+      <ol className="developer-list">
+        {this.props.developerlist.map((developer) => (
+
+          <li key={developer.id} className="developer-item">
+
+            <div
+              className="developer-avatar"
+              style={{ backgroundImage: `url(${developer.avatarUrl})` }}
+             />
+
+            <div className="developer-details">
+              <p> {developer.name} </p>
+              <p> {developer.email} </p>
+            </div>
+            
+            <button className="contact-remove"></button>
+
+          </li>
+        ))}
+      </ol>
+    );
+  }
+}
+```
+
+- [ ] ReactDOM.render() currently returns a reference to the root
+
+```jsx
+//reference root is => 'app' in my case
+ReactDOM.render(<App />, document.getElementById('app'));
+```
+
+- [ ] Compiling the file using `babel` and livereload using `live-server`
+  - Using babel [👆](##compiling-the-file)
+  - Using live-server [👆](##live-server)
+  
