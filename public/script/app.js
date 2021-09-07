@@ -8,8 +8,55 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var App = function (_React$Component) {
-    _inherits(App, _React$Component);
+var DeveloperList = function (_React$Component) {
+    _inherits(DeveloperList, _React$Component);
+
+    function DeveloperList() {
+        _classCallCheck(this, DeveloperList);
+
+        return _possibleConstructorReturn(this, (DeveloperList.__proto__ || Object.getPrototypeOf(DeveloperList)).apply(this, arguments));
+    }
+
+    _createClass(DeveloperList, [{
+        key: "render",
+        value: function render() {
+            console.log(this.props.developerlist);
+            return React.createElement(
+                "ol",
+                { className: "developer-list" },
+                this.props.developerlist.map(function (developer) {
+                    return React.createElement(
+                        "li",
+                        { key: developer.id, className: "developer-item" },
+                        React.createElement("div", { className: "developer-avatar", style: {
+                                backgroundImage: "url(" + developer.avatarUrl + ")"
+                            } }),
+                        React.createElement(
+                            "div",
+                            { className: "developer-details" },
+                            React.createElement(
+                                "p",
+                                null,
+                                developer.name
+                            ),
+                            React.createElement(
+                                "p",
+                                null,
+                                developer.email
+                            )
+                        ),
+                        React.createElement("button", { className: "contact-remove" })
+                    );
+                })
+            );
+        }
+    }]);
+
+    return DeveloperList;
+}(React.Component);
+
+var App = function (_React$Component2) {
+    _inherits(App, _React$Component2);
 
     function App() {
         _classCallCheck(this, App);
@@ -21,114 +68,31 @@ var App = function (_React$Component) {
         key: "render",
         value: function render() {
             // Lets use reference
-            var title = "Header Title";
-            var subTitle = "Sub Title";
-            var people = [{ name: 'Ullas' }, { name: 'Captain' }, { name: 'America' }];
+            var developerlist = [{
+                id: 'DevJr1',
+                name: 'Ullas Kunder',
+                email: "ullaskunder3@gmail.com",
+                "avatarUrl": "https://randomuser.me/api/portraits/med/men/1.jpg"
+            }, {
+                id: 'DevJr2',
+                name: 'Captain',
+                email: "ullaskunder3@gmail.com",
+                "avatarUrl": "https://randomuser.me/api/portraits/med/men/1.jpg"
+            }, {
+                id: 'DevJr3',
+                name: 'America',
+                email: "ullaskunder3@gmail.com",
+                "avatarUrl": "https://randomuser.me/api/portraits/med/men/1.jpg"
+            }];
             return React.createElement(
                 "div",
                 null,
-                React.createElement(Header, { title: title, subTitle: subTitle }),
-                React.createElement(NameList, { nameList: people }),
-                React.createElement(Button, null)
+                React.createElement(DeveloperList, { developerlist: developerlist })
             );
         }
     }]);
 
     return App;
-}(React.Component);
-
-var Header = function (_React$Component2) {
-    _inherits(Header, _React$Component2);
-
-    function Header() {
-        _classCallCheck(this, Header);
-
-        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
-    }
-
-    _createClass(Header, [{
-        key: "render",
-        value: function render() {
-            return React.createElement(
-                "div",
-                null,
-                React.createElement(
-                    "h1",
-                    null,
-                    this.props.title.toUpperCase()
-                ),
-                React.createElement(
-                    "h3",
-                    null,
-                    this.props.subTitle
-                )
-            );
-        }
-    }]);
-
-    return Header;
-}(React.Component);
-// Name list component
-
-
-var NameList = function (_React$Component3) {
-    _inherits(NameList, _React$Component3);
-
-    function NameList() {
-        _classCallCheck(this, NameList);
-
-        return _possibleConstructorReturn(this, (NameList.__proto__ || Object.getPrototypeOf(NameList)).apply(this, arguments));
-    }
-
-    _createClass(NameList, [{
-        key: "render",
-        value: function render() {
-            console.log(this.props.nameList);
-            return React.createElement(
-                "ul",
-                null,
-                React.createElement(
-                    "p",
-                    null,
-                    "List Component"
-                ),
-                this.props.nameList.map(function (person) {
-                    return React.createElement(
-                        "li",
-                        { key: person.name },
-                        person.name
-                    );
-                })
-            );
-        }
-    }]);
-
-    return NameList;
-}(React.Component);
-// creating button component
-
-
-var Button = function (_React$Component4) {
-    _inherits(Button, _React$Component4);
-
-    function Button() {
-        _classCallCheck(this, Button);
-
-        return _possibleConstructorReturn(this, (Button.__proto__ || Object.getPrototypeOf(Button)).apply(this, arguments));
-    }
-
-    _createClass(Button, [{
-        key: "render",
-        value: function render() {
-            return React.createElement(
-                "button",
-                null,
-                "Add"
-            );
-        }
-    }]);
-
-    return Button;
 }(React.Component);
 
 ReactDOM.render(React.createElement(App, null), document.getElementById('app'));
