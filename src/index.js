@@ -1,54 +1,55 @@
-class App extends React.Component {
+class DeveloperList extends React.Component {
     render() {
-        // Lets use reference
-        const title = "Header Title";
-        const subTitle = "Sub Title";
-        const people = [
-            { name: 'Ullas' },
-            { name: 'Captain' },
-            { name: 'America' }
-        ]
+        console.log(this.props.developerlist);
         return (
-            <div>
-                <Header title = {title} subTitle = {subTitle} />
-                <NameList nameList = {people}/>
-                <Button />
-            </div>
+            <ol className="developer-list">
+                {
+                    this.props.developerlist.map((developer) => (
+                        <li key={ developer.id } className="developer-item">
+                            <div className= "developer-avatar" style={ {
+                                backgroundImage: `url(${developer.avatarUrl})`
+                            } } />
+                            <div className="developer-details">
+                                <p>{ developer.name }</p>
+                                <p>{ developer.email }</p>
+                            </div>
+                            <button className="contact-remove">
+                            </button>
+                        </li>
+                    ))
+                }
+            </ol>
         )
     }
 }
 
-class Header extends React.Component {
+class App extends React.Component {
     render() {
+        // Lets use reference
+        const developerlist = [
+            {
+                id: 'DevJr1',
+                name: 'Ullas Kunder',
+                email: "ullaskunder3@gmail.com",
+                "avatarUrl": "https://randomuser.me/api/portraits/med/men/1.jpg"
+            },
+            {
+                id: 'DevJr2',
+                name: 'Captain',
+                email: "ullaskunder3@gmail.com",
+                "avatarUrl": "https://randomuser.me/api/portraits/med/men/1.jpg"
+            },
+            {
+                id: 'DevJr3',
+                name: 'America',
+                email: "ullaskunder3@gmail.com",
+                "avatarUrl": "https://randomuser.me/api/portraits/med/men/1.jpg"
+            }
+        ]
         return (
             <div>
-                <h1>{this.props.title.toUpperCase()}</h1>
-                <h3>{this.props.subTitle}</h3>
+                <DeveloperList developerlist={ developerlist } />
             </div>
-        )
-    }
-}
-// Name list component
-class NameList extends React.Component {
-    render() {
-        console.log(this.props.nameList);
-        return (
-            <ul>
-                <p>List Component</p>
-                { this.props.nameList.map(person => (
-                    <li key={ person.name }>{ person.name }</li>
-                )) }
-            </ul>
-        )
-    }
-}
-// creating button component
-class Button extends React.Component {
-    render() {
-        return (
-            <button>
-                Add
-            </button>
         )
     }
 }
