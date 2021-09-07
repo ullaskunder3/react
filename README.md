@@ -607,3 +607,15 @@ import App from './App';
 
 ReactDOM.render(<App />, document.getElementById('app'));
 ```
+
+## Run the build
+
+```bash
+npm run build
+```
+
+Start server to serve application files
+
+```bash
+npm run serve
+```
