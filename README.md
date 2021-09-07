@@ -407,3 +407,203 @@ ReactDOM.render(<App />, document.getElementById('app'));
 - [ ] Compiling the file using `babel` and livereload using `live-server`
   - Using babel [👆 To the Top](#compiling-the-file)
   - Using live-server [👆 To the Top](#live-server)
+
+## Lets Recreate the developer list
+
+## One React Component per File
+
+Convention of one React component file, and the component should always be the default export.
+
+- [ ] Next we will install dev dependencies and loaders
+
+```bash
+npm install react react-dom
+```
+
+The `-D` flag is the shortcut for: `--save-dev`
+
+```bash
+npm i -D @babel/core @babel/preset-env @babel/preset-react babel-loader webpack webpack-cli
+```
+
+- `@babel /core`: Babel functionality of converting ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments resides at @babel/core
+
+- `@babel /preset-env`: A smart preset that allows you to use the latest JavaScript without needing to micromanage which syntax transforms (and optionally, browser polyfills) are needed by your target environment(s).
+
+- `@babel /preset-react`: The unique selling point with babel-preset-env is that you can define what browsers you support
+By default, babel-preset-env just installs all ES6 plugin you’ll need. But this can bloat up your bundle.
+
+- `babel-loader`: Babel loader is used to convert code written in modern flavors and supersets of JavaScript into plain old JavaScript code supported by older browsers. Thanks to Babel loader we can enjoy new JavaScript syntax and write our code using EcmaScript 2015 and even JSX (React).
+
+## Webpack
+
+- Webpack
+
+  Every file used in our project is a Module
+
+  `./App.js`
+
+  ```js
+  export default App;
+  ```
+
+  `./index.js`
+
+  ```js
+  import App from './App'
+  ```
+
+  Its simply bundle up your multiple file and create a sigle file
+
+- __Webpack Main Concepts__
+
+  - `Entry`: The entry point where its determines which other modules and libraries that entry point depends on (directly and indirectly) and includes them in the graph until no dependency is left. By default, the entry property is set to `./src/index.js`
+
+  - `Output`: The output property instructs webpack where to put the bundle(s) and what name to use for the file(s). The default value for this property is `./dist/main.js`
+
+  - `Loaders`: by default, webpack only understands JavaScript and JSON files. To process other types of files and convert them into valid modules, `webpack uses loaders`. Loaders transform the source code of non-JavaScript modules
+
+  - `Mode`: Deuring the development of application we work with two types of source code — one for the `development build` and one for the `production build`. Webpack allows us to set which one we want to be produced by changing the mode parameter to development, production or none.
+
+  - `Exclude`: which defines the files that shouldn’t be processed from the loader(s), if we have such.
+
+  - `Test`: which describes what kind of files should be transformed. with regular expression
+
+  - `use`: Which tells which loader(s) should be used against the matched modules. Here, we can also set the loader options, as we’ve just done with the presets option.
+
+- .babelrc is optional we can add the required presets in the `use.options`
+
+- We need __"path"__ module
+The path module provides utilities for working with file and directory paths. It can be accessed using:
+
+`./webpack.config.js`
+
+```js
+// 1.Enter point of application
+// 2.Where to put the output file
+
+const path = require('path')
+
+module.exports = {
+  entry: './src/index.js',
+  mode: 'development',
+  output: {
+    path: path.join(__dirname, 'public/script'),
+    filename: 'bundle.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use:{
+          loader: 'babel-loader',
+          
+          options: {
+            presets: [
+              "@babel/react" , 
+              "@babel/env"
+            ]
+          }
+        // ---comment: for options we can create seperate .babelrc ---
+        }
+      }
+    ]
+  }
+};
+```
+
+```cmd
+├───project
+│       task1.png
+│
+├───public
+│   │   index.html
+│   │   style.css
+│   │
+│   └───script
+│           app.js
+│           bundle.js
+│
+├───src
+|     App.js
+|     DeveloperList.js
+|     index.js
+|
+├───package.json
+├───webpack.config.js
+└───.babelrc (optional)
+
+```
+
+`App.js`
+
+```js
+import React from 'react';
+
+import DeveloperList from './DeveloperList.js';
+
+const developerlist = [
+    {
+        id: 'DevJr1',
+        name: 'Ullas Kunder',
+        email: "ullaskunder3@gmail.com",
+        "avatarUrl": "https://randomuser.me/api/portraits/med/men/1.jpg"
+    },
+]
+class App extends React.Component{
+    render(){
+        return(
+            <div>
+                <DeveloperList developerlist={developerlist}/>
+            </div>
+        )
+    }
+}
+export default App
+```
+
+`DeveloperList.js`
+
+```js
+import React from 'react';
+
+class DeveloperList extends React.Component{
+    render(){
+        console.log(this.props);
+        return(
+            <ol className="developer-list">
+            {
+                this.props.developerlist.map((developer) => (
+                    <li key={ developer.id } className="developer-item">
+                        <div className= "developer-avatar" style={ {
+                            backgroundImage: `url(${developer.avatarUrl})`
+                        } } />
+                        <div className="developer-details">
+                            <span>{developer.id}</span>
+                            <p>{ developer.name }</p>
+                            <p>{ developer.email }</p>
+                        </div>
+                        <button className="contact-remove">
+                        </button>
+                    </li>
+                ))
+            }
+        </ol>
+        )
+    }
+}
+//exporting Component
+export default DeveloperList
+```
+
+`index.js`
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import App from './App';
+
+ReactDOM.render(<App />, document.getElementById('app'));
+```
