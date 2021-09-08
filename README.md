@@ -619,3 +619,64 @@ Start server to serve application files
 ```bash
 npm run serve
 ```
+
+## Stateless Functional Component
+
+`functional components` transpile down to less code than class components, which means functional components = smaller bundles:
+
+- It accepts properties (props) in a function and returns HTML (JSX).
+
+- No class keyword
+
+- No this Keyword
+
+- NO render() method
+
+example: 
+
+```js
+  function Example(props) {
+    return (
+      <p>Hello there, {props.name}</p>
+    )
+  }
+  // This is the same example but as an arrow function.
+  const Example = (props) => {
+    return (
+      <p>Hello there, {props.name}</p>
+    )
+  }
+```
+
+- Lets Convert the DeveloperList Class component to functional component
+
+```js
+function DeveloperList(props) {
+    return (
+        <ol className="developer-list">
+
+            { props.developerlist.map((developer) => (
+
+                <li key={ developer.id } className="developer-item">
+                    <div
+                        className="developer-avatar"
+                        style={ { backgroundImage: `url(${developer.avatarUrl})` } }
+                    />
+
+                    <div className="developer-details">
+                        <span>{ developer.id }</span>
+                        <p>{ developer.name }</p>
+                        <p>{ developer.email }</p>
+                    </div>
+
+                    <button className="contact-remove"></button>
+                </li>
+
+            )) }
+        </ol>
+    );
+}
+
+```
+
+## Run The Build again [🚀To the Top](#run-the-build)
