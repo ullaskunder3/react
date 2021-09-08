@@ -26,6 +26,7 @@ class App extends React.Component{
     render(){
         return(
             <div>
+                {/* passing array of object to component */}
                 <DeveloperList developerlist={developerlist}/>
             </div>
         )
