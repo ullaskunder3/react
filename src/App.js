@@ -26,12 +26,20 @@ class App extends React.Component {
             }
         ]
     }
+    removeDev = (dev)=>{
+        this.setState((prevState)=>({
+            developerlist: prevState.developerlist.filter((user)=> user.id !== dev.id )
+        }))
+    }
 
     render() {
         return (
             <div>
                 {/* passing state */}
-                <DeveloperList developerlist={ this.state.developerlist } />
+                <DeveloperList 
+                onDeleteDev = {this.removeDev}
+                developerlist={ this.state.developerlist } 
+                />
             </div>
         )
     }
