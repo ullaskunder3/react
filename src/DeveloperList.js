@@ -19,7 +19,10 @@ function DeveloperList(props) {
                         <p>{ developer.email }</p>
                     </div>
 
-                    <button className="contact-remove"></button>
+                    <button
+                     onClick = {()=>props.onDeleteDev(developer)}
+                     className="contact-remove"
+                     ></button>
                 </li>
 
             )) }
