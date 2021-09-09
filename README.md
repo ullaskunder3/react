@@ -222,6 +222,8 @@ ReactDOM.render(<App />, document.getElementById("app"));
 
 `Props` is a special keyword in React, which is used for passing data from one component to another.
 
+- props represent "read-only" data that are immutable.
+
 Example. 3
 
 ```jsx
@@ -679,4 +681,54 @@ function DeveloperList(props) {
 
 ```
 
-## Run The Build again [🚀To the Top](#run-the-build)
+### Run The Build again [🚀To the Top](#run-the-build)
+
+## Lets see how to add state to a components
+
+- `props` & `state` are both plain JavaScript objects.
+
+- `props` get passed to the component (similar to function parameters) whereas state is managed within the component (similar to variables declared within a function).
+
+- A component's state represents `mutable data`. When state changes, the component responds by re-rendering. State is managed internally by the component itself and is meant to change over time.
+
+example:
+
+```js
+class HeaderComp extends React.Component{
+  state = {
+    username: 'ullas'
+  }
+  render(){
+    return (
+      <p>UserName: {this.state.username}</p>
+    )
+  }
+}
+```
+
+lets change:
+
+```js
+class App extends React.Component {
+
+    state = {
+        developerlist: [
+            {
+                id: 'DevJr1',
+                name: 'Ullas Kunder',
+                email: "ullaskunder3@gmail.com",
+                "avatarUrl": "https://randomuser.me/api/portraits/med/men/1.jpg"
+            }
+        ]
+    }
+
+    render() {
+        return (
+            <div>
+                {/* passing state */}
+                <DeveloperList developerlist={ this.state.developerlist } />
+            </div>
+        )
+    }
+}
+```
