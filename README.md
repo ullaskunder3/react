@@ -348,21 +348,21 @@ In short, a key should be:
 
 ```jsx
 class App extends React.Component {
-    render() {
-        const developerlist = [
-            {
-                id: 'DevJr1',
-                name: 'Ullas Kunder',
-                email: "ullaskunder3@gmail.com",
-                "avatarUrl": "https://randomuser.me/api/portraits/med/men/1.jpg"
-            }
-        ]
-        return (
-            <div>
-                <DeveloperList developerlist={ developerlist } />
-            </div>
-        )
-    }
+  render() {
+    const developerlist = [
+      {
+        id: "DevJr1",
+        name: "Ullas Kunder",
+        email: "ullaskunder3@gmail.com",
+        avatarUrl: "https://randomuser.me/api/portraits/med/men/1.jpg",
+      },
+    ];
+    return (
+      <div>
+        <DeveloperList developerlist={developerlist} />
+      </div>
+    );
+  }
 }
 ```
 
@@ -376,21 +376,18 @@ class DeveloperList extends React.Component {
     return (
       <ol className="developer-list">
         {this.props.developerlist.map((developer) => (
-
           <li key={developer.id} className="developer-item">
-
             <div
               className="developer-avatar"
               style={{ backgroundImage: `url(${developer.avatarUrl})` }}
-             />
+            />
 
             <div className="developer-details">
               <p> {developer.name} </p>
               <p> {developer.email} </p>
             </div>
-            
-            <button className="contact-remove"></button>
 
+            <button className="contact-remove"></button>
           </li>
         ))}
       </ol>
@@ -403,7 +400,7 @@ class DeveloperList extends React.Component {
 
 ```jsx
 //reference root is => 'app' in my case
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById("app"));
 ```
 
 - [ ] Compiling the file using `babel` and livereload using `live-server`
@@ -433,7 +430,7 @@ npm i -D @babel/core @babel/preset-env @babel/preset-react babel-loader webpack 
 - `@babel /preset-env`: A smart preset that allows you to use the latest JavaScript without needing to micromanage which syntax transforms (and optionally, browser polyfills) are needed by your target environment(s).
 
 - `@babel /preset-react`: The unique selling point with babel-preset-env is that you can define what browsers you support
-By default, babel-preset-env just installs all ES6 plugin you’ll need. But this can bloat up your bundle.
+  By default, babel-preset-env just installs all ES6 plugin you’ll need. But this can bloat up your bundle.
 
 - `babel-loader`: Babel loader is used to convert code written in modern flavors and supersets of JavaScript into plain old JavaScript code supported by older browsers. Thanks to Babel loader we can enjoy new JavaScript syntax and write our code using EcmaScript 2015 and even JSX (React).
 
@@ -452,12 +449,12 @@ By default, babel-preset-env just installs all ES6 plugin you’ll need. But thi
   `./index.js`
 
   ```js
-  import App from './App'
+  import App from "./App";
   ```
 
   Its simply bundle up your multiple file and create a sigle file
 
-- __Webpack Main Concepts__
+- **Webpack Main Concepts**
 
   - `Entry`: The entry point where its determines which other modules and libraries that entry point depends on (directly and indirectly) and includes them in the graph until no dependency is left. By default, the entry property is set to `./src/index.js`
 
@@ -475,8 +472,8 @@ By default, babel-preset-env just installs all ES6 plugin you’ll need. But thi
 
 - .babelrc is optional we can add the required presets in the `use.options`
 
-- We need __"path"__ module
-The path module provides utilities for working with file and directory paths. It can be accessed using:
+- We need **"path"** module
+  The path module provides utilities for working with file and directory paths. It can be accessed using:
 
 `./webpack.config.js`
 
@@ -484,34 +481,31 @@ The path module provides utilities for working with file and directory paths. It
 // 1.Enter point of application
 // 2.Where to put the output file
 
-const path = require('path')
+const path = require("path");
 
 module.exports = {
-  entry: './src/index.js',
-  mode: 'development',
+  entry: "./src/index.js",
+  mode: "development",
   output: {
-    path: path.join(__dirname, 'public/script'),
-    filename: 'bundle.js',
+    path: path.join(__dirname, "public/script"),
+    filename: "bundle.js",
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use:{
-          loader: 'babel-loader',
-          
+        use: {
+          loader: "babel-loader",
+
           options: {
-            presets: [
-              "@babel/react" , 
-              "@babel/env"
-            ]
-          }
-        // ---comment: for options we can create seperate .babelrc ---
-        }
-      }
-    ]
-  }
+            presets: ["@babel/react", "@babel/env"],
+          },
+          // ---comment: for options we can create seperate .babelrc ---
+        },
+      },
+    ],
+  },
 };
 ```
 
@@ -541,73 +535,73 @@ module.exports = {
 `App.js`
 
 ```js
-import React from 'react';
+import React from "react";
 
-import DeveloperList from './DeveloperList.js';
+import DeveloperList from "./DeveloperList.js";
 
 const developerlist = [
-    {
-        id: 'DevJr1',
-        name: 'Ullas Kunder',
-        email: "ullaskunder3@gmail.com",
-        "avatarUrl": "https://randomuser.me/api/portraits/med/men/1.jpg"
-    },
-]
-class App extends React.Component{
-    render(){
-        return(
-            <div>
-                <DeveloperList developerlist={developerlist}/>
-            </div>
-        )
-    }
+  {
+    id: "DevJr1",
+    name: "Ullas Kunder",
+    email: "ullaskunder3@gmail.com",
+    avatarUrl: "https://randomuser.me/api/portraits/med/men/1.jpg",
+  },
+];
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <DeveloperList developerlist={developerlist} />
+      </div>
+    );
+  }
 }
-export default App
+export default App;
 ```
 
 `DeveloperList.js`
 
 ```js
-import React from 'react';
+import React from "react";
 
-class DeveloperList extends React.Component{
-    render(){
-        console.log(this.props);
-        return(
-            <ol className="developer-list">
-            {
-                this.props.developerlist.map((developer) => (
-                    <li key={ developer.id } className="developer-item">
-                        <div className= "developer-avatar" style={ {
-                            backgroundImage: `url(${developer.avatarUrl})`
-                        } } />
-                        <div className="developer-details">
-                            <span>{developer.id}</span>
-                            <p>{ developer.name }</p>
-                            <p>{ developer.email }</p>
-                        </div>
-                        <button className="contact-remove">
-                        </button>
-                    </li>
-                ))
-            }
-        </ol>
-        )
-    }
+class DeveloperList extends React.Component {
+  render() {
+    console.log(this.props);
+    return (
+      <ol className="developer-list">
+        {this.props.developerlist.map((developer) => (
+          <li key={developer.id} className="developer-item">
+            <div
+              className="developer-avatar"
+              style={{
+                backgroundImage: `url(${developer.avatarUrl})`,
+              }}
+            />
+            <div className="developer-details">
+              <span>{developer.id}</span>
+              <p>{developer.name}</p>
+              <p>{developer.email}</p>
+            </div>
+            <button className="contact-remove"></button>
+          </li>
+        ))}
+      </ol>
+    );
+  }
 }
 //exporting Component
-export default DeveloperList
+export default DeveloperList;
 ```
 
 `index.js`
 
 ```js
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import App from './App';
+import App from "./App";
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById("app"));
 ```
 
 ## Run the build
@@ -634,51 +628,43 @@ npm run serve
 
 - NO render() method
 
-example: 
+example:
 
 ```js
-  function Example(props) {
-    return (
-      <p>Hello there, {props.name}</p>
-    )
-  }
-  // This is the same example but as an arrow function.
-  const Example = (props) => {
-    return (
-      <p>Hello there, {props.name}</p>
-    )
-  }
+function Example(props) {
+  return <p>Hello there, {props.name}</p>;
+}
+// This is the same example but as an arrow function.
+const Example = (props) => {
+  return <p>Hello there, {props.name}</p>;
+};
 ```
 
 - Lets Convert the DeveloperList Class component to functional component
 
 ```js
 function DeveloperList(props) {
-    return (
-        <ol className="developer-list">
+  return (
+    <ol className="developer-list">
+      {props.developerlist.map((developer) => (
+        <li key={developer.id} className="developer-item">
+          <div
+            className="developer-avatar"
+            style={{ backgroundImage: `url(${developer.avatarUrl})` }}
+          />
 
-            { props.developerlist.map((developer) => (
+          <div className="developer-details">
+            <span>{developer.id}</span>
+            <p>{developer.name}</p>
+            <p>{developer.email}</p>
+          </div>
 
-                <li key={ developer.id } className="developer-item">
-                    <div
-                        className="developer-avatar"
-                        style={ { backgroundImage: `url(${developer.avatarUrl})` } }
-                    />
-
-                    <div className="developer-details">
-                        <span>{ developer.id }</span>
-                        <p>{ developer.name }</p>
-                        <p>{ developer.email }</p>
-                    </div>
-
-                    <button className="contact-remove"></button>
-                </li>
-
-            )) }
-        </ol>
-    );
+          <button className="contact-remove"></button>
+        </li>
+      ))}
+    </ol>
+  );
 }
-
 ```
 
 ### Run The Build again [🚀To the Top](#run-the-build)
@@ -694,14 +680,12 @@ function DeveloperList(props) {
 example:
 
 ```js
-class HeaderComp extends React.Component{
+class HeaderComp extends React.Component {
   state = {
-    username: 'ullas'
-  }
-  render(){
-    return (
-      <p>UserName: {this.state.username}</p>
-    )
+    username: "ullas",
+  };
+  render() {
+    return <p>UserName: {this.state.username}</p>;
   }
 }
 ```
@@ -710,25 +694,112 @@ lets change:
 
 ```js
 class App extends React.Component {
+  state = {
+    developerlist: [
+      {
+        id: "DevJr1",
+        name: "Ullas Kunder",
+        email: "ullaskunder3@gmail.com",
+        avatarUrl: "https://randomuser.me/api/portraits/med/men/1.jpg",
+      },
+    ],
+  };
 
-    state = {
-        developerlist: [
-            {
-                id: 'DevJr1',
-                name: 'Ullas Kunder',
-                email: "ullaskunder3@gmail.com",
-                "avatarUrl": "https://randomuser.me/api/portraits/med/men/1.jpg"
-            }
-        ]
+  render() {
+    return (
+      <div>
+        {/* passing state */}
+        <DeveloperList developerlist={this.state.developerlist} />
+      </div>
+    );
+  }
+}
+```
+
+## Updating state
+
+Using Helper method setState(), setState is `asynchronous`
+
+- `setState()` schedules an update to a component’s state object. When state changes, the component responds by re-rendering.
+- `setState()` enqueues changes to the component state and tells React that this component and its children need to be re-rendered with the updated state.
+
+- The fact that setState causes reconciliation(the process of re-rendering the components tree) is base of the next property — setState is asynchronous. This allows us to have multiple calls to setState in a single scope and not trigger not needed re-renders of the whole tree.
+
+### setState passing function as its parameter
+
+```js
+this.setState((prevState) => {
+  counter: prevState.value + 1;
+});
+```
+
+- The object returned from this function will be merged with current state to form the new state of component
+
+### setState passing object as its parameter
+
+```js
+this.setState({
+  userName: "ullas",
+});
+```
+
+- The object returned from this function will be merged with current state to form the new state of component
+
+When to use `this.setState(()=>{})` vs `this.setState({})`
+
+If we are updating the new state based on the current state then use function
+
+```js
+this.setState(() => {});
+```
+
+if not then pass object as it parameter
+
+```js
+this.setState({
+  userName: "ullas",
+});
+```
+
+---
+
+For updating the developer list
+
+- [ ] creating function in App component where the state is.
+
+  - function will responsible for updating the state
+
+- [ ] Then pass the function to DeveloperList component as a prop
+
+- [ ] Then inside the Developer hook up with button onclick
+
+`App.js`
+
+```js
+removeDev = (dev)=>{
+        this.setState((prevState)=>({
+            developerlist: prevState.developerlist.filter((user)=> user.id !== dev.id )
+        }))
     }
 
     render() {
         return (
             <div>
                 {/* passing state */}
-                <DeveloperList developerlist={ this.state.developerlist } />
+                <DeveloperList
+                onDeleteDev = {this.removeDev}
+                developerlist={ this.state.developerlist }
+                />
             </div>
         )
     }
-}
+```
+
+`DeveloperList.js`
+
+```js
+<button
+  onClick={() => props.onDeleteDev(developer)}
+  className="contact-remove"
+></button>
 ```
