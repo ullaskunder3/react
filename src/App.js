@@ -26,9 +26,9 @@ class App extends React.Component {
             }
         ]
     }
-    removeDev = (dev)=>{
-        this.setState((prevState)=>({
-            developerlist: prevState.developerlist.filter((user)=> user.id !== dev.id )
+    removeDev = (del)=>{
+        this.setState((currentState)=>({
+            developerlist: currentState.developerlist.filter((user)=> user.id !== del.id )
         }))
     }
 
