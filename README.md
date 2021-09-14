@@ -803,3 +803,13 @@ removeDev = (dev)=>{
   className="contact-remove"
 ></button>
 ```
+
+## webpack sourcemap
+
+Choose a style of source mapping to enhance the debugging process. These values can affect build and rebuild speed dramatically.
+
+`webpack.config.js`
+
+```js
+devtool: 'eval-source-map'
+```
