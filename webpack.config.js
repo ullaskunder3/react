@@ -5,9 +5,8 @@ const path = require('path')
 
 module.exports = {
   entry: './src/index.js',
-  mode: 'development',
   output: {
-    path: path.join(__dirname, 'public/script'),
+    path: path.join(__dirname, 'public'),
     filename: 'bundle.js',
   },
   module: {
@@ -29,5 +28,11 @@ module.exports = {
       }
     ]
   },
-  devtool: 'eval-source-map'
+  devtool: 'eval-source-map',
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'public'),
+    }
+  },
+  mode: 'development',
 };
