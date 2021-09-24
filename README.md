@@ -813,3 +813,51 @@ Choose a style of source mapping to enhance the debugging process. These values 
 ```js
 devtool: 'eval-source-map'
 ```
+
+## webpack serve
+
+`webpack-dev-server` (which is used to serve the public directory and reload the changes in the browser when we make any change in the code).
+
+Lets just make little bit changes in the code
+
+1. Lets build the __bundle.js__ directely in `public` folder not in script folder
+  
+    So in 🦉 `webpack.config.js`
+
+    change the path from `path.join(__dirname, 'public/script')` to `path.join(__dirname, 'public')`
+
+    ```webpack.config.js
+        output: {
+          path: path.join(__dirname, 'public'),
+          filename: 'bundle.js',
+        },
+    ```
+
+2. Lets add new script in `package.json`
+
+    ```package.json
+        "scripts": {
+          "start": "webpack serve",
+          "build": "webpack"
+        },
+    ```
+
+3. Lets add `bundle.js` in `index.html`
+
+    ```index.html
+      <script src="bundle.js"></script>
+    ```
+
+🐱‍👤=> Check by running the command
+
+- Build the bundle.js from the workspace terminal
+
+  ```npm
+    npm run build
+  ```
+  
+- 🤩...last
+
+  ```npm
+    npm start
+  ```
