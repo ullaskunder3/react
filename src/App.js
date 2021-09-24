@@ -7,22 +7,22 @@ class App extends React.Component {
     state = {
         developerlist: [
             {
-                id: 'DevJr1',
+                id: 'DevJr1st',
                 name: 'Ullas Kunder',
                 email: "ullaskunder3@gmail.com",
                 "avatarUrl": "https://randomuser.me/api/portraits/med/men/1.jpg"
             },
             {
                 id: 'DevJr2',
-                name: 'Captain',
+                name: 'Captain Awesome',
                 email: "example@gmail.com",
-                "avatarUrl": "https://randomuser.me/api/portraits/med/men/1.jpg"
+                "avatarUrl": "https://randomuser.me/api/portraits/med/men/2.jpg"
             },
             {
                 id: 'DevJr3',
                 name: 'America',
                 email: "userDevmail@gmail.com",
-                "avatarUrl": "https://randomuser.me/api/portraits/med/men/1.jpg"
+                "avatarUrl": "https://randomuser.me/api/portraits/med/men/3.jpg"
             }
         ]
     }
