@@ -4,9 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "serve": "live-server public/",
-    "build": "webpack --watch",
-    "build-babel": "babel src/index.js --out-file=public/script/app.js --presets=env,react --watch"
+    "start": "webpack serve",
+    "build": "webpack"
   },
   "dependencies": {
     "live-server": "^1.2.0",
